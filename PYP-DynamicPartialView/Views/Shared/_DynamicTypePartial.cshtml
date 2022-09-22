@@ -1,0 +1,27 @@
+﻿@model object
+    @if (Model is IEnumerable<object> model)
+    {
+    <div class="row">
+        @foreach (var item in model)
+        {
+            <div class="card col-4 my-3">
+            @foreach (var prop in item.GetType().GetProperties())
+            {
+                    <p class="card-text px-2">@prop.Name:@prop.GetValue(item)</p>
+            }
+            </div>
+        }
+    </div>
+    }
+    else{
+        <div class="row">
+            <div class="card col-4 my-3">
+                @foreach (var prop in Model.GetType().GetProperties())
+                {
+                    <p class="card-text px-2">@prop.Name:@prop.GetValue(Model)</p>
+                }
+            </div>
+        </div>
+    }
+
+
